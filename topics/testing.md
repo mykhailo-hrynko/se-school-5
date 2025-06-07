@@ -162,16 +162,29 @@ export class SubscriptionDriver {
 > Перевикористовувані функції для перевірок.
 
 ```ts
-export function expectEmailSent(mockFn: Mock, to: string, subjectIncludes: string) {
-  expect(mockFn).toHaveBeenCalledWith(
-    expect.objectContaining({
-      to,
-      subject: expect.stringContaining(subjectIncludes),
-    })
-  );
+import { validate } from "uuid";
+
+export function toBeUuid(received: string) {
+  if (typeof received !== "string") {
+    return {
+      pass: false,
+      message: () =>
+        `Expected the value to be a string, but got ${typeof received}.`,
+    };
+  }
+
+  if (!validate(received)) {
+    return {
+      pass: false,
+      message: () => `Expected the value to be a UUID, but got ${received}.`,
+    };
+  }
+
+  return { pass: true, message: () => "" };
 }
 ```
 
-📍 Краще, ніж повторювати 5 рядків `expect(...)` у кожному тесті.
-
+```ts
+expect("hello").toBeUuid()
+```
 ---
