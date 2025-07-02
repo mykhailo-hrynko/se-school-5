@@ -49,6 +49,7 @@
   - `<link rel="stylesheet" media="...">`
 - вибір потрібного зображення (`media queries` та `srcset`)
 - Сучасні формати зображень (WebP, AVIF), SVG для іконок
+  - https://developers.cloudflare.com/images/
 - Пагінація
 - Мініфікація HTML/CSS/JS
 - Увімкни GZIP або Brotli на сервері
